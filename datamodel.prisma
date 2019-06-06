@@ -1,0 +1,25 @@
+type User {
+  id: ID! @id
+  username: String! @unique
+  password: String!
+  createdAt: DateTime @createdAt
+  updatedAt: DateTime @updatedAt
+}
+
+type MenuItem {
+  id: ID! @id
+  name: String!
+  cost: Int
+  inStock: Boolean @default(value: false)
+  createdAt: DateTime @createdAt
+  updatedAt: DateTime @updatedAt
+}
+
+type WaitlistItem {
+  id: ID! @id
+  name: String!
+  partySize: Int!
+  phoneNumber: String
+  createdAt: DateTime @createdAt
+  updatedAt: DateTime @updatedAt
+}

@@ -1,0 +1,26 @@
+# import * from './generated/prisma.graphql'
+
+type Query {
+  users: [User]!
+  user(where: UserWhereUniqueInput!): User!
+  waitlistItem(where: WaitlistItemWhereUniqueInput!): WaitlistItem!
+  menuItems: [MenuItem]!
+  waitlistItems: [WaitlistItem]!
+  isLoggedIn: Boolean!
+  myId: String!
+  doIExist(where: UserWhereUniqueInput): Boolean!
+}
+
+type Mutation {
+  createMenuItem(name: String!, cost: Int!, inStock: Boolean): MenuItem!
+  createWaitlistItem(name: String!, partySize: Int!, phoneNumber: String): WaitlistItem!
+  removeWaitlistItem(id: ID!): WaitlistItem!
+  createUser(username: String!, password: String!) : User!
+  login(username: String!, password: String!): Boolean!
+  logout: Boolean!
+}
+
+type Subscription {
+  newWaitlistItem: WaitlistItem!
+  waitlistItem(where: WaitlistItemSubscriptionWhereInput): WaitlistItemSubscriptionPayload!
+}
