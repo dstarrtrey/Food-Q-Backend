@@ -6,16 +6,15 @@ const Query = {
   waitlistItems: forwardTo('db'),
   user: forwardTo('db'),
   waitlistItem: forwardTo('db'),
-  isLoggedIn: (parent, args, { request }) => typeof request.session.user !== 'undefined',
-  myId: (parent, args, { request }) => {
+  isLoggedIn: (_, __, { request }) => typeof request.session.user !== 'undefined',
+  myId: (_, __, { request }) => {
     if (request.session.user) {
       return request.session.user.id;
     }
     return 'Login Error: Query MyID returned undefined';
   },
-  doIExist: (parent, args, { db, request }) => {
+  doIExist: (_, __, { db, request }) => {
     return request.session.user ? db.exists.User({ id: request.session.user.id }) : false;
-    return db.exists.User({ id: request.session.user.id });
   },
 };
 

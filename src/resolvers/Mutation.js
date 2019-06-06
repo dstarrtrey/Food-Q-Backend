@@ -3,7 +3,7 @@ const client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_AUTH
 const { PUBSUB_NEW_WAITLIST_ITEM } = require('../shared/constants');
 
 const Mutation = {
-  async createMenuItem(parent, args, ctx, info) {
+  async createMenuItem(_, args, ctx, info) {
     const newMenuItem = await ctx.db.mutation.createMenuItem({
       data: {
         ...args,
@@ -12,7 +12,7 @@ const Mutation = {
     return newMenuItem;
   },
 
-  async createWaitlistItem(parent, args, { db, pubsub }, info) {
+  async createWaitlistItem(_, args, { db, pubsub }, info) {
     const newWaitlistItem = await db.mutation.createWaitlistItem({
       data: {
         ...args,
@@ -48,7 +48,7 @@ const Mutation = {
     return newWaitlistItem;
   },
 
-  async removeWaitlistItem(parent, args, { db, pubsub }, info) {
+  async removeWaitlistItem(_, args, { db, pubsub }, info) {
     const deletedItem = await db.mutation.deleteWaitlistItem({
       where: {
         ...args,
@@ -60,7 +60,7 @@ const Mutation = {
     return deletedItem;
   },
 
-  async login(parent, { username, password }, { request, db }) {
+  async login(_, { username, password }, { request, db }) {
     const user = await db.query.user({
       where: {
         username,
@@ -80,7 +80,7 @@ const Mutation = {
     }
     throw new Error('No Such User exists.');
   },
-  logout(parent, args, { request }) {
+  logout(_, __, { request }) {
     delete request.session.user;
     if (!request.session.user) {
       return true;
