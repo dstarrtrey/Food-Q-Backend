@@ -6,10 +6,10 @@
   "scripts": {
     "start": "nodemon -e js,graphql -x node src/index.js",
     "dev": "nodemon -e js,graphql -x node --inspect src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "deploy": "prisma deploy"
   },
-  "author": "",
+  "author": "RMS Devs",
   "license": "ISC",
   "dependencies": {
     "babel-preset-env": "^1.7.0",
@@ -35,7 +35,8 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.13.0"
+    "eslint-plugin-react": "^7.13.0",
+    "mocha": "^6.1.4"
   },
   "engines": {
     "node": ">=11.0.0",

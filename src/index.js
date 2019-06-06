@@ -4,7 +4,7 @@ require('dotenv').config({ path: path.join(__dirname, '../.env') });
 
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const createServer = require('./createServer');
+const { createServer } = require('./createServer');
 
 const server = createServer();
 const app = server.express;
